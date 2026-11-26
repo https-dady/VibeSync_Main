@@ -1,0 +1,17 @@
+# Optional self-hosted SFU. Replace placeholders; never commit real keys.
+# Keep port 7880 behind HTTPS/WSS ingress. Allow RTC TCP/UDP on the public host.
+port: 7880
+rtc:
+  tcp_port: 7881
+  port_range_start: 50000
+  port_range_end: 60000
+  use_external_ip: true
+redis:
+  address: redis:6379
+  password: REPLACE_WITH_REDIS_PASSWORD
+keys:
+  REPLACE_WITH_LIVEKIT_API_KEY: REPLACE_WITH_RANDOM_LIVEKIT_API_SECRET
+webhook:
+  api_key: REPLACE_WITH_LIVEKIT_API_KEY
+  urls:
+    - https://api.example.com/api/rtc/livekit-webhook

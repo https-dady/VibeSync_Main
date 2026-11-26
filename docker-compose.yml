@@ -1,0 +1,77 @@
+name: vibesync
+
+services:
+  mongo:
+    image: mongo:8.0
+    restart: unless-stopped
+    command: ['mongod', '--replSet', 'rs0', '--bind_ip_all']
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ['CMD', 'mongosh', '--quiet', '--eval', "db.adminCommand('ping').ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+  mongo-init:
+    image: mongo:8.0
+    restart: 'no'
+    entrypoint: ['mongosh', '--host', 'mongo:27017', '--quiet', '/scripts/mongo-init.js']
+    volumes:
+      - ./deploy/mongo-init.js:/scripts/mongo-init.js:ro
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ['redis-server', '--appendonly', 'yes']
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: ./services/api
+    restart: unless-stopped
+    init: true
+    env_file:
+      - ./services/api/.env
+    environment:
+      NODE_ENV: development
+      PORT: 4000
+      MONGODB_URI: mongodb://mongo:27017/vibesync?replicaSet=rs0
+      REDIS_URL: redis://redis:6379
+      MEDIA_STORAGE_DIR: /app/storage/uploads
+    ports:
+      - '127.0.0.1:4000:4000'
+    volumes:
+      - uploads:/app/storage/uploads
+    depends_on:
+      mongo-init:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          "fetch('http://127.0.0.1:4000/api/health/ready').then((r) => { if (!r.ok) process.exit(1); }).catch(() => process.exit(1));",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+volumes:
+  mongo-data:
+  redis-data:
+  uploads:

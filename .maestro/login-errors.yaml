@@ -1,0 +1,12 @@
+appId: com.vibesync
+---
+- launchApp:
+    clearState: true
+- tapOn:
+    text: SKIP
+    optional: true
+- tapOn:
+    text: Sign in
+    optional: true
+- tapOn: Sign in
+- assertVisible: Enter a valid email address.

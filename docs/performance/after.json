@@ -1,0 +1,139 @@
+{
+  "measured_at": "2026-11-18T03:15:32.682Z",
+  "node": "v24.18.1",
+  "environment": "Windows loopback Node API + independent Socket.IO clients + ephemeral MongoDB; Redis disabled; rate limits disabled by test environment",
+  "duration_ms": 7770,
+  "metrics": {
+    "registration": {
+      "count": 20,
+      "p50_ms": 203.31,
+      "p95_ms": 210.09,
+      "min_ms": 193.4,
+      "max_ms": 249.76
+    },
+    "login": {
+      "count": 8,
+      "p50_ms": 201.87,
+      "p95_ms": 207.53,
+      "min_ms": 193.06,
+      "max_ms": 207.53
+    },
+    "room_create": {
+      "count": 4,
+      "p50_ms": 13.14,
+      "p95_ms": 27.33,
+      "min_ms": 11.26,
+      "max_ms": 27.33
+    },
+    "join_2_clients": {
+      "count": 1,
+      "p50_ms": 45.89,
+      "p95_ms": 45.89,
+      "min_ms": 45.89,
+      "max_ms": 45.89
+    },
+    "chat_2_clients": {
+      "count": 5,
+      "p50_ms": 10.05,
+      "p95_ms": 11.95,
+      "min_ms": 8.43,
+      "max_ms": 11.95
+    },
+    "socket_reconnect": {
+      "count": 4,
+      "p50_ms": 16.98,
+      "p95_ms": 27.53,
+      "min_ms": 16.85,
+      "max_ms": 27.53
+    },
+    "join_5_clients": {
+      "count": 4,
+      "p50_ms": 70.4,
+      "p95_ms": 85.38,
+      "min_ms": 54.34,
+      "max_ms": 85.38
+    },
+    "chat_5_clients": {
+      "count": 5,
+      "p50_ms": 7.8,
+      "p95_ms": 10.06,
+      "min_ms": 6.53,
+      "max_ms": 10.06
+    },
+    "join_10_clients": {
+      "count": 9,
+      "p50_ms": 190.76,
+      "p95_ms": 225.06,
+      "min_ms": 114.4,
+      "max_ms": 225.06
+    },
+    "chat_10_clients": {
+      "count": 5,
+      "p50_ms": 7.74,
+      "p95_ms": 9.81,
+      "min_ms": 5.59,
+      "max_ms": 9.81
+    },
+    "join_20_clients": {
+      "count": 19,
+      "p50_ms": 471.26,
+      "p95_ms": 600.28,
+      "min_ms": 204.1,
+      "max_ms": 600.28
+    },
+    "chat_20_clients": {
+      "count": 5,
+      "p50_ms": 6.76,
+      "p95_ms": 9.53,
+      "min_ms": 5.99,
+      "max_ms": 9.53
+    },
+    "clock_roundtrip": {
+      "count": 10,
+      "p50_ms": 0.95,
+      "p95_ms": 1.88,
+      "min_ms": 0.83,
+      "max_ms": 1.88
+    }
+  },
+  "capacity": [
+    {
+      "simulated_clients": 2,
+      "reported_members": 2,
+      "membership_consistent": true
+    },
+    {
+      "simulated_clients": 5,
+      "reported_members": 5,
+      "membership_consistent": true
+    },
+    {
+      "simulated_clients": 10,
+      "reported_members": 10,
+      "membership_consistent": true
+    },
+    {
+      "simulated_clients": 20,
+      "reported_members": 20,
+      "membership_consistent": true
+    }
+  ],
+  "node_process": {
+    "cpu_user_ms": 6938,
+    "cpu_system_ms": 390,
+    "rss_bytes": 247705600,
+    "heap_used_bytes": 103648904
+  },
+  "sampled_response_json_bytes": 10966,
+  "unverified": [
+    "native startup",
+    "BLE discovery",
+    "LAN/hotspot media transfer",
+    "decoder startup/buffering",
+    "acoustic playback drift",
+    "packet loss",
+    "OS network bytes",
+    "battery",
+    "physical participant capacity"
+  ]
+}

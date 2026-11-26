@@ -1,0 +1,84 @@
+'use strict';
+const fs = require('node:fs');
+const fsp = require('node:fs/promises');
+const path = require('node:path');
+const { S3Client, PutObjectCommand, HeadObjectCommand, GetObjectCommand, DeleteObjectCommand } = require('@aws-sdk/client-s3');
+const { NodeHttpHandler } = require('@smithy/node-http-handler');
+const config = require('../config/env');
+const ApiError = require('../utils/ApiError');
+let client;
+
+function s3() {
+  if (!config.S3_BUCKET) throw ApiError.internal('S3 media storage is not configured');
+  if (!client) client = new S3Client({ region: config.S3_REGION,
+    ...(config.S3_ENDPOINT ? { endpoint: config.S3_ENDPOINT } : {}),
+    forcePathStyle: config.S3_FORCE_PATH_STYLE,
+    ...(config.S3_ACCESS_KEY_ID && config.S3_SECRET_ACCESS_KEY ? { credentials: { accessKeyId: config.S3_ACCESS_KEY_ID, secretAccessKey: config.S3_SECRET_ACCESS_KEY } } : {}),
+    requestChecksumCalculation: 'WHEN_REQUIRED',
+    requestHandler: new NodeHttpHandler({ connectionTimeout: 5000, socketTimeout: 30000 }),
+  });
+  return client;
+}
+
+function localPath(key) {
+  if (!key || path.basename(key) !== key) throw ApiError.notFound('Media file unavailable', 'MEDIA_FILE_MISSING');
+  return path.resolve(config.MEDIA_STORAGE_DIR, key);
+}
+
+async function store(file, roomId) {
+  const driver = config.MEDIA_STORAGE_DRIVER;
+  if (driver === 'local') return { storageDriver: driver, storageKey: path.basename(file.filename) };
+  const key = `rooms/${roomId}/${path.basename(file.filename)}`;
+  try {
+    await s3().send(new PutObjectCommand({ Bucket: config.S3_BUCKET, Key: key,
+      Body: fs.createReadStream(file.path), ContentType: file.mimetype, ContentLength: file.size,
+      ...(config.S3_SERVER_SIDE_ENCRYPTION ? { ServerSideEncryption: config.S3_SERVER_SIDE_ENCRYPTION } : {}) }));
+  } catch (error) {
+    await s3().send(new DeleteObjectCommand({ Bucket: config.S3_BUCKET, Key: key })).catch(() => {});
+    throw error;
+  }
+  return { storageDriver: 's3', storageKey: key };
+}
+
+async function remove(media) {
+  if (media.storageDriver === 's3') {
+    await s3().send(new DeleteObjectCommand({ Bucket: config.S3_BUCKET, Key: media.storageKey }));
+  } else await fsp.unlink(localPath(media.storageKey)).catch((error) => { if (error.code !== 'ENOENT') throw error; });
+}
+
+async function stat(media) {
+  if (media.storageDriver !== 's3') {
+    try { return { size: (await fsp.stat(localPath(media.storageKey))).size }; }
+    catch (error) { if (error.code === 'ENOENT') throw ApiError.notFound('Media file missing', 'MEDIA_FILE_MISSING'); throw error; }
+  }
+  try {
+    const result = await s3().send(new HeadObjectCommand({ Bucket: config.S3_BUCKET, Key: media.storageKey }));
+    return { size: result.ContentLength, etag: result.ETag, lastModified: result.LastModified };
+  } catch (error) {
+    if (error.$metadata?.httpStatusCode === 404) throw ApiError.notFound('Media object missing', 'MEDIA_FILE_MISSING');
+    throw error;
+  }
+}
+
+async function stream(media, range, signal) {
+  const result = await s3().send(new GetObjectCommand({ Bucket: config.S3_BUCKET, Key: media.storageKey,
+    ...(range ? { Range: `bytes=${range.start}-${range.end}` } : {}) }), { abortSignal: signal });
+  return result.Body;
+}
+
+function byteRange(header, size) {
+  if (!header) return null;
+  const match = /^bytes=(\d*)-(\d*)$/.exec(header);
+  if (!match || !match[1] && !match[2]) return false;
+  let start; let end;
+  if (!match[1]) {
+    const suffix = Number(match[2]); if (!Number.isSafeInteger(suffix) || suffix <= 0) return false;
+    start = Math.max(0, size - suffix); end = size - 1;
+  } else {
+    start = Number(match[1]); end = match[2] ? Math.min(Number(match[2]), size - 1) : size - 1;
+  }
+  if (!Number.isSafeInteger(start) || !Number.isSafeInteger(end) || start < 0 || start >= size || end < start) return false;
+  return { start, end };
+}
+
+module.exports = { store, remove, stat, stream, localPath, byteRange };

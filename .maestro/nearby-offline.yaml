@@ -1,0 +1,11 @@
+appId: com.vibesync
+---
+- launchApp:
+    clearState: true
+- tapOn:
+    text: SKIP
+    optional: true
+- tapOn: Use nearby offline
+- assertVisible: Nearby rooms
+- assertVisible: Host
+- assertVisible: Join

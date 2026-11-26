@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Nearby rooms stream media and state over the local Wi-Fi network using HTTP.
+  Android has no CIDR-based cleartext exception, so cleartext is enabled for
+  local addresses. The public VibeSync API domains explicitly stay TLS-only.
+-->
+<network-security-config>
+  <base-config cleartextTrafficPermitted="true">
+    <trust-anchors>
+      <certificates src="system" />
+    </trust-anchors>
+  </base-config>
+  <domain-config cleartextTrafficPermitted="false">
+    <domain includeSubdomains="true">vibesync.app</domain>
+    <domain includeSubdomains="true">www.vibesync.app</domain>
+    <domain includeSubdomains="true">api.vibesync.app</domain>
+  </domain-config>
+</network-security-config>

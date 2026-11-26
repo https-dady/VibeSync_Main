@@ -1,0 +1,52 @@
+# Use: docker compose --env-file .env.production -f docker-compose.yml -f docker-compose.production.yml up -d --build
+services:
+  mongo-keyfile:
+    image: alpine:3.22
+    restart: 'no'
+    entrypoint: ['/bin/sh', '-ec', 'cp /run/secrets/mongo_keyfile /keyfile/key; chmod 400 /keyfile/key; chown 999:999 /keyfile/key']
+    secrets: [mongo_keyfile]
+    volumes: [mongo-keyfile:/keyfile]
+
+  mongo:
+    command: ['mongod', '--replSet', 'rs0', '--bind_ip_all', '--auth', '--keyFile', '/keyfile/key']
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME:-vibesync-admin}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD:?Set a random Mongo root password}
+    volumes:
+      - mongo-keyfile:/keyfile:ro
+    depends_on:
+      mongo-keyfile:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ['CMD', 'mongosh', '--quiet', '--eval', "db.getSiblingDB('admin').auth(process.env.MONGO_INITDB_ROOT_USERNAME, process.env.MONGO_INITDB_ROOT_PASSWORD); db.adminCommand('ping').ok"]
+
+  mongo-init:
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME:-vibesync-admin}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD:?Set a random Mongo root password}
+      MONGO_APP_USER: ${MONGO_APP_USER:-vibesync}
+      MONGO_APP_PASSWORD: ${MONGO_APP_PASSWORD:?Set a random Mongo app password}
+
+  redis:
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD:?Set a random Redis password}
+    command: ['/bin/sh', '-ec', 'exec redis-server --appendonly yes --requirepass "$$REDIS_PASSWORD"']
+    healthcheck:
+      test: ['CMD-SHELL', 'REDISCLI_AUTH="$$REDIS_PASSWORD" redis-cli ping']
+
+  api:
+    environment:
+      NODE_ENV: production
+      MONGODB_URI: mongodb://${MONGO_APP_USER:-vibesync}:${MONGO_APP_PASSWORD:?Set a random Mongo app password}@mongo:27017/vibesync?replicaSet=rs0&authSource=vibesync
+      REDIS_URL: redis://:${REDIS_PASSWORD:?Set a random Redis password}@redis:6379
+    read_only: true
+    tmpfs: ['/tmp:size=64m']
+    security_opt: ['no-new-privileges:true']
+    cap_drop: [ALL]
+    stop_grace_period: 25s
+
+secrets:
+  mongo_keyfile:
+    file: ./deploy/secrets/mongo-keyfile
+volumes:
+  mongo-keyfile:

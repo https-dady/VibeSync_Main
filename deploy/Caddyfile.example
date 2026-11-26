@@ -1,0 +1,12 @@
+# Copy to /etc/caddy/Caddyfile (or mount it into the caddy container) and set
+# VIBESYNC_DOMAIN / VIBESYNC_UPSTREAM in the Caddy environment.
+#
+# Docker Compose network example:
+#   VIBESYNC_UPSTREAM=api:4000 and attach caddy to the vibesync_default network.
+# Host installation example:
+#   VIBESYNC_UPSTREAM=127.0.0.1:4000
+
+{$VIBESYNC_DOMAIN:api.vibesync.app} {
+	encode zstd gzip
+	reverse_proxy {$VIBESYNC_UPSTREAM:127.0.0.1:4000}
+}

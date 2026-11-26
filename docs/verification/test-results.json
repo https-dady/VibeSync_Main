@@ -1,0 +1,730 @@
+[
+  {
+    "area": "Backend",
+    "passed": 40,
+    "failed": 0,
+    "pending": 0,
+    "suites": 3,
+    "tests": [
+      {
+        "file": "services/api/tests/reliability.test.js",
+        "name": "health readiness detects service drain while liveness remains available",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/reliability.test.js",
+        "name": "single-session logout revokes access from that token family",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/reliability.test.js",
+        "name": "LiveKit webhook uses official signature and original-body hash validation",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/reliability.test.js",
+        "name": "normalizes room codes and rejects invalid or missing codes with bounded errors",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/reliability.test.js",
+        "name": "parallel duplicate joins create one membership and reserve one seat",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/reliability.test.js",
+        "name": "independent simultaneous clients cannot overfill a room",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/reliability.test.js",
+        "name": "duplicate approval requests and decisions do not duplicate notifications or seats",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/reliability.test.js",
+        "name": "concurrent leave is idempotent and banned guests cannot rejoin",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/reliability.test.js",
+        "name": "pending private members cannot see current media or playback",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/reliability.test.js",
+        "name": "parallel refresh reuse revokes the successor and its access token",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/reliability.test.js",
+        "name": "logout-all revokes REST access and disconnects authenticated sockets",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/reliability.test.js",
+        "name": "password changes revoke old access and refresh sessions",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/reliability.test.js",
+        "name": "REST/socket retries use one message identity and cannot reuse it for different content",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/reliability.test.js",
+        "name": "message pagination preserves every message when creation timestamps tie",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/reliability.test.js",
+        "name": "concurrent host commands use distinct sequences and late joiners get real computed position",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/reliability.test.js",
+        "name": "scheduled playback anchors in server time and stale commands cannot override it",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/reliability.test.js",
+        "name": "provider contracts reject web pages/private addresses and declare platform capabilities",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/reliability.test.js",
+        "name": "media HEAD/range is authenticated and MIME spoofing is rejected",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/integration.test.js",
+        "name": "VibeSync API health endpoint reports the independent service",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/integration.test.js",
+        "name": "VibeSync API registers users, rejects duplicate email and bad credentials",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/integration.test.js",
+        "name": "VibeSync API rotates refresh tokens and detects token reuse",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/integration.test.js",
+        "name": "VibeSync API creates a public room and enforces host-only playback",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/integration.test.js",
+        "name": "VibeSync API adds authorized media, streams byte ranges and synchronizes playback",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/integration.test.js",
+        "name": "VibeSync API enforces room chat, private host messaging and chat permissions",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/integration.test.js",
+        "name": "VibeSync API manages speak requests, permissions and host moderation",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/integration.test.js",
+        "name": "VibeSync API supports private join requests and room passwords",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/integration.test.js",
+        "name": "VibeSync API authenticates sockets, synchronizes clocks and relays room events",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/integration.test.js",
+        "name": "VibeSync API ends the room and blocks further playback",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/transport.test.js",
+        "name": "long Unicode passwords cannot authenticate using bcrypt-truncated suffixes",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/transport.test.js",
+        "name": "Range bytes=0-3 enforces safe byte bounds",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/transport.test.js",
+        "name": "Range bytes=3- enforces safe byte bounds",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/transport.test.js",
+        "name": "Range bytes=-4 enforces safe byte bounds",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/transport.test.js",
+        "name": "Range bytes=0-99 enforces safe byte bounds",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/transport.test.js",
+        "name": "Range bytes=10-11 enforces safe byte bounds",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/transport.test.js",
+        "name": "Range bytes=3-1 enforces safe byte bounds",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/transport.test.js",
+        "name": "Range bytes=-0 enforces safe byte bounds",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/transport.test.js",
+        "name": "Range bytes=0-1,3-4 enforces safe byte bounds",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/transport.test.js",
+        "name": "Range bytes=9007199254740992- enforces safe byte bounds",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/transport.test.js",
+        "name": "presence handles two independent sockets without false offline transitions",
+        "status": "passed"
+      },
+      {
+        "file": "services/api/tests/transport.test.js",
+        "name": "one active socket heartbeat does not preserve a crashed socket forever",
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "area": "Mobile",
+    "passed": 102,
+    "failed": 0,
+    "pending": 0,
+    "suites": 9,
+    "tests": [
+      {
+        "file": "apps/mobile/__tests__/player.test.js",
+        "name": "native player lifecycle contract (player callbacks simulated) waits for a native load callback before playing or seeking",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/player.test.js",
+        "name": "native player lifecycle contract (player callbacks simulated) starts at a scheduled server time after media is ready",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/player.test.js",
+        "name": "native player lifecycle contract (player callbacks simulated) does not issue repeated drift seeks while native player buffers",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/player.test.js",
+        "name": "native player lifecycle contract (player callbacks simulated) shows a bounded load failure and exposes a real retry",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/player.test.js",
+        "name": "native player lifecycle contract (player callbacks simulated) never sends API bearer credentials to an external DRM license server",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/accessibility.test.js",
+        "name": "account preference disables motion even when system preference is off",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/accessibility.test.js",
+        "name": "late initial system read cannot overwrite a newer accessibility event",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/accessibility.test.js",
+        "name": "unmount removes listener before the initial preference read completes",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/room-lifecycle.test.js",
+        "name": "room activation and reconnect lifecycle deduplicates concurrent room entry and creates one socket subscription",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/room-lifecycle.test.js",
+        "name": "room activation and reconnect lifecycle a required playback request failure ends loading and reports failure",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/room-lifecycle.test.js",
+        "name": "room activation and reconnect lifecycle clearing the room cancels delayed entry without restoring state",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/room-lifecycle.test.js",
+        "name": "room activation and reconnect lifecycle realtime snapshots received during preparation win over stale REST responses",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/room-lifecycle.test.js",
+        "name": "room activation and reconnect lifecycle reconnect replaces verified chat history to reconcile missed moderation",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/voice.test.js",
+        "name": "LiveKit SDK lifecycle contract connects with backend-issued credentials and subscribes",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/voice.test.js",
+        "name": "LiveKit SDK lifecycle contract publishes microphone and responds to mute",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/voice.test.js",
+        "name": "LiveKit SDK lifecycle contract listener cannot publish without host grant",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/voice.test.js",
+        "name": "LiveKit SDK lifecycle contract moderation disables an active mic",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/voice.test.js",
+        "name": "LiveKit SDK lifecycle contract disconnect removes SDK event listeners and audio session",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/voice.test.js",
+        "name": "mesh lifecycle regressions uses actual selected SFU transport when configured",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/voice.test.js",
+        "name": "mesh lifecycle regressions offers to a permitted but currently silent lower-ID member",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/voice.test.js",
+        "name": "mesh lifecycle regressions simultaneous microphone enable does not create multiple streams",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/voice.test.js",
+        "name": "mesh lifecycle regressions does not enable mesh publishing above documented capacity",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/voice.test.js",
+        "name": "mesh lifecycle regressions departure closes and releases peer handlers",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/voice.test.js",
+        "name": "mesh lifecycle regressions unnegotiated candidate queue is bounded",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/nearby.test.js",
+        "name": "local room address and playback protocol accepts local IPv4 192.168.1.20:8787",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/nearby.test.js",
+        "name": "local room address and playback protocol accepts local IPv4 10.0.0.2:8080",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/nearby.test.js",
+        "name": "local room address and playback protocol accepts local IPv4 172.16.1.2:4000",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/nearby.test.js",
+        "name": "local room address and playback protocol accepts literal local IPv6 and trims paths",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/nearby.test.js",
+        "name": "local room address and playback protocol rejects malformed or public destination https://evil.example:443",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/nearby.test.js",
+        "name": "local room address and playback protocol rejects malformed or public destination 8.8.8.8:8787",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/nearby.test.js",
+        "name": "local room address and playback protocol rejects malformed or public destination 192.168.999.1:8787",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/nearby.test.js",
+        "name": "local room address and playback protocol rejects malformed or public destination 192.168.1.20",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/nearby.test.js",
+        "name": "local room address and playback protocol rejects malformed or public destination 192.168.1.20:65536",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/nearby.test.js",
+        "name": "local room address and playback protocol rejects malformed or public destination http://user:pass@192.168.1.20:8787",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/nearby.test.js",
+        "name": "local room address and playback protocol local playback uses host timeline and pause position",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/nearby.test.js",
+        "name": "local room address and playback protocol scheduled playback does not advance before host start deadline",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/nearby.test.js",
+        "name": "local room address and playback protocol media resolves to host path",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/nearby.test.js",
+        "name": "local room address and playback protocol never attaches session credentials to arbitrary external media",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/nearby.test.js",
+        "name": "nearby fetch lifecycle and admission join code normalization and one request ID for retry prevent duplicate admission",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/nearby.test.js",
+        "name": "nearby fetch lifecycle and admission rejects admission with incomplete state",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/nearby.test.js",
+        "name": "nearby fetch lifecycle and admission does not retry an authorization rejection",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/nearby.test.js",
+        "name": "nearby fetch lifecycle and admission rejects malformed JSON instead of fake success",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/nearby.test.js",
+        "name": "nearby fetch lifecycle and admission aborts stalled network request and releases deadline",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/nearby.test.js",
+        "name": "nearby fetch lifecycle and admission measures round trip and authenticates session read",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/nearby.test.js",
+        "name": "nearby fetch lifecycle and admission message retry carries same idempotency key and server confirmation",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/nearby.test.js",
+        "name": "nearby fetch lifecycle and admission host moderation uses authenticated endpoint",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/nearby.test.js",
+        "name": "nearby fetch lifecycle and admission verifies rediscovered host without sending recovery key or bearer token",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/nearby.test.js",
+        "name": "nearby fetch lifecycle and admission rejects host proof from another room before moving credentials",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/core-regression.test.js",
+        "name": "clock and playback regressions ages out old low latency samples after a clock/network change",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/core-regression.test.js",
+        "name": "clock and playback regressions defers correction while player is unavailable: {\"buffering\": true}",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/core-regression.test.js",
+        "name": "clock and playback regressions defers correction while player is unavailable: {\"loaded\": false}",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/core-regression.test.js",
+        "name": "clock and playback regressions preserves selected playback speed inside drift tolerance",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/core-regression.test.js",
+        "name": "clock and playback regressions scheduled playback stays at its anchor before the server start",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/core-regression.test.js",
+        "name": "clock and playback regressions rejects malformed, duplicate and stale sequences",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/core-regression.test.js",
+        "name": "online invite validation normalizes valid code ABC2345",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/core-regression.test.js",
+        "name": "online invite validation normalizes valid code abc2345",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/core-regression.test.js",
+        "name": "online invite validation normalizes valid code  ABC2345 ",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/core-regression.test.js",
+        "name": "online invite validation rejects invalid code without stripping into a different room: ABCD",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/core-regression.test.js",
+        "name": "online invite validation rejects invalid code without stripping into a different room: ABC1234",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/core-regression.test.js",
+        "name": "online invite validation rejects invalid code without stripping into a different room: ABC2345extra",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/core-regression.test.js",
+        "name": "online invite validation rejects invalid code without stripping into a different room: ABC-2345",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/core-regression.test.js",
+        "name": "online invite validation rejects invalid code without stripping into a different room: ABC2345/",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/core-regression.test.js",
+        "name": "online invite validation accepts issued invite shape vibesync://room/abc2345",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/core-regression.test.js",
+        "name": "online invite validation accepts issued invite shape vibesync://r/ABC2345",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/core-regression.test.js",
+        "name": "online invite validation accepts issued invite shape vibesync:///room/ABC2345",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/core-regression.test.js",
+        "name": "online invite validation accepts issued invite shape https://vibesync.app/r/ABC2345",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/core-regression.test.js",
+        "name": "online invite validation rejects malformed or untrusted link https://evil.example/r/ABC2345",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/core-regression.test.js",
+        "name": "online invite validation rejects malformed or untrusted link vibesync://r/ABC2345/extra",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/core-regression.test.js",
+        "name": "online invite validation rejects malformed or untrusted link vibesync://r/%ZZ",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/core-regression.test.js",
+        "name": "online invite validation rejects malformed or untrusted link https://user:pass@vibesync.app/r/ABC2345",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/core-regression.test.js",
+        "name": "chat acknowledgement merge server echo replaces optimistic copy by client identity",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/core-regression.test.js",
+        "name": "chat acknowledgement merge delayed acknowledgements cannot resurrect a moderated message",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/core-regression.test.js",
+        "name": "chat acknowledgement merge orders equal timestamps deterministically and deduplicates one incoming page",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/session.test.js",
+        "name": "secure session lifecycle concurrent boot reads secure storage once",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/session.test.js",
+        "name": "secure session lifecycle a delayed boot read cannot overwrite a newer login",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/session.test.js",
+        "name": "secure session lifecycle refresh responses cannot restore a signed out session",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/session.test.js",
+        "name": "secure session lifecycle simultaneous refreshes use one rotating token request",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/session.test.js",
+        "name": "secure session lifecycle never sends an old server token after an origin switch",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/session.test.js",
+        "name": "secure session lifecycle legacy credentials without a bound origin require sign-in",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/session.test.js",
+        "name": "secure session lifecycle secure storage failure does not leave a usable login in memory",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/session.test.js",
+        "name": "secure session lifecycle secure deletion failure is surfaced while in-memory tokens stay cleared",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/layout-config.test.js",
+        "name": "responsive action groups width 320 / font scale 1 chooses column",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/layout-config.test.js",
+        "name": "responsive action groups width 360 / font scale 1 chooses column",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/layout-config.test.js",
+        "name": "responsive action groups width 430 / font scale 1 chooses row",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/layout-config.test.js",
+        "name": "responsive action groups width 768 / font scale 1 chooses row",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/layout-config.test.js",
+        "name": "responsive action groups width 768 / font scale 2 chooses column",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/layout-config.test.js",
+        "name": "API server origins accepts HTTPS release origin",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/layout-config.test.js",
+        "name": "API server origins allows explicit LAN development",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/layout-config.test.js",
+        "name": "API server origins rejects unsafe release configuration http://api.example.com",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/layout-config.test.js",
+        "name": "API server origins rejects unsafe release configuration https://user:password@example.com",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/layout-config.test.js",
+        "name": "API server origins rejects unsafe release configuration https://example.com/api",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/layout-config.test.js",
+        "name": "API server origins rejects unsafe release configuration https://example.com?token=x",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/layout-config.test.js",
+        "name": "API server origins rejects unsafe release configuration ftp://example.com",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/layout-config.test.js",
+        "name": "API server origins rejects unsafe release configuration https://example.com:99999",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/sync.test.js",
+        "name": "ClockSync estimates offset with symmetric latency",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/sync.test.js",
+        "name": "ClockSync rejects invalid samples",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/sync.test.js",
+        "name": "ClockSync prefers low-RTT samples and reports quality",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/sync.test.js",
+        "name": "playback synchronization computes expected authoritative position",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/sync.test.js",
+        "name": "playback synchronization paused media does not advance",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/sync.test.js",
+        "name": "playback synchronization seeks on large drift",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/sync.test.js",
+        "name": "playback synchronization nudges rate for small drift",
+        "status": "passed"
+      },
+      {
+        "file": "apps/mobile/__tests__/sync.test.js",
+        "name": "playback synchronization leaves already-synced media alone",
+        "status": "passed"
+      }
+    ]
+  }
+]

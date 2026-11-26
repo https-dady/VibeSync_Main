@@ -1,0 +1,28 @@
+{
+  "name": "vibesync-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "VibeSync - universal synchronized multimedia rooms for Android and iOS",
+  "scripts": {
+    "install:all": "npm ci --prefix services/api && npm ci --prefix apps/mobile --legacy-peer-deps",
+    "configure:mobile": "npm --prefix apps/mobile run configure",
+    "api": "npm --prefix services/api run dev",
+    "api:start": "npm --prefix services/api start",
+    "mobile:start": "npm --prefix apps/mobile start",
+    "mobile:android": "npm --prefix apps/mobile run android",
+    "mobile:ios": "npm --prefix apps/mobile run ios",
+    "docker:up": "docker compose up -d --build",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f api",
+    "test": "npm --prefix services/api test && npm --prefix apps/mobile test -- --runInBand",
+    "test:api": "npm --prefix services/api test",
+    "test:mobile": "npm --prefix apps/mobile test -- --runInBand",
+    "lint": "npm --prefix services/api run lint && npm --prefix apps/mobile run lint",
+    "check:source": "node scripts/check-source.js",
+    "benchmark": "npm --prefix services/api run benchmark --",
+    "migrate": "npm --prefix services/api run migrate"
+  },
+  "engines": {
+    "node": ">=20.19.0"
+  }
+}

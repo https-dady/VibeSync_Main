@@ -1,0 +1,61 @@
+# dependencies
+node_modules/
+.pnp/
+.pnp.js
+.yarn/
+
+# environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.p8
+*.keystore
+*.jks
+*.mobileprovision
+!**/*.example
+
+# build output
+build/
+dist/
+coverage/
+*.tsbuildinfo
+services/api/storage/uploads/*
+!services/api/storage/uploads/.gitkeep
+apps/mobile/android/.gradle/
+apps/mobile/android/app/build/
+apps/mobile/android/build/
+apps/mobile/ios/Pods/
+apps/mobile/ios/build/
+apps/mobile/ios/DerivedData/
+apps/mobile/ios/*.xcworkspace/xcuserdata/
+*.xcuserstate
+apps/mobile/android/local.properties
+apps/mobile/android/app/release/
+apps/mobile/.bundle/
+apps/mobile/vendor/
+
+# logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+services/api/logs/
+*.pid
+
+# editors and OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+!/.vscode/extensions.json
+
+# local data
+deploy/secrets/
+.verification/
+.qa/
+*.backup
+*.zip
+data/
+redis-data/
+mongo-data/
