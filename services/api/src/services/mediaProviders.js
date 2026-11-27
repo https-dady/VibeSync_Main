@@ -57,22 +57,22 @@ function resolveMediaSource(input) {
 
   // 1. YouTube links (watch, youtu.be, shorts, live, embed)
   if (isYouTubeHost(host)) {
-    return {
-      url: url.toString(),
-      provider: 'youtube-embed',
-      mimeType: 'text/html',
-      playbackCapabilities: {
-        providerId: 'youtube-embed',
-        supportedPlatforms: ['android', 'ios'],
-        authentication: 'public-or-provider-signed-url',
-        drmRequired: false,
-        synchronizedPlayback: true,
-        seeking: true,
-        metadataSource: 'user-supplied',
-        urlResolution: 'embed',
-      },
-    };
-  }
+  return {
+    url: url.toString(),
+    provider: 'web-embed',
+    mimeType: 'text/html',
+    playbackCapabilities: {
+      providerId: 'web-embed',
+      supportedPlatforms: ['android', 'ios'],
+      authentication: 'public-or-provider-signed-url',
+      drmRequired: false,
+      synchronizedPlayback: true,
+      seeking: true,
+      metadataSource: 'user-supplied',
+      urlResolution: 'embed',
+    },
+  };
+}
 
   // 2. Direct media stream URLs (.mp4, .m3u8, .mpd, .mp3, etc.)
   const extension = url.pathname.split('.').pop().toLowerCase();
