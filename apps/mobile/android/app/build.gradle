@@ -85,6 +85,11 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    externalNativeBuild {
+        cmake {
+            buildStagingDirectory file("C:/x")
+        }
+    }
     signingConfigs {
         // AGP generates the local ~/.android/debug.keystore for debug builds.
         // No signing key is shipped with the source archive.
@@ -106,6 +111,8 @@ android {
         release {
             if (project.hasProperty('VIBESYNC_UPLOAD_STORE_FILE')) {
                 signingConfig signingConfigs.release
+            } else {
+                signingConfig signingConfigs.debug
             }
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
